@@ -1,11 +1,11 @@
 const express = require('express');
 const passport=require('passport');
-const {getAllLivre,getLivreById,createLivre,deleteLivre,updateLivre} = require('../controllers/livreController');
+const {getLivreById,createLivre,deleteLivre,updateLivre,getAllLivres} = require('../controllers/livreController');
 
 const router = express.Router();
 
 router.get('/livre'
-,getAllLivre);
+,getAllLivres);
 
 router.get('/livre/:id'
 ,getLivreById)
@@ -17,6 +17,6 @@ router.put('/livre/:id'
 ,updateLivre)
 
 //delete
-router.delete('/livre/:id',passport.authenticate('bearer', { session: false })
+router.delete('/livre/:id'
 ,deleteLivre);
 module.exports = router;

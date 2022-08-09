@@ -13,7 +13,7 @@ const Client = require('../models/client');
     }
 }
 
-exports.getclientById = async (req, res, next) => {
+exports.getClientById = async (req, res, next) => {
     try{
         const client= await Client.findById(req.params.id);
         res.send(client);

@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const Livre = require('../models/livre');
 
-exports.getAllLivre = async (req, res) => {
+exports.getAllLivres = async (req, res) => {
     try{
         const allLivres= await Livre.find();
         res.send(allLivres);
@@ -50,10 +50,11 @@ exports.updateLivre = async (req, res, next) => {
 
 exports.deleteLivre = async (req, res, next) => {
     try{
-        const Livre = await Livre.findByIdAndRemove(req.params.id);
-        res.send(Livre);
+        const livre = await Livre.findByIdAndRemove(req.params.id);
+        res.send(livre);
     }
     catch (err) {
+    console.log(err);
         res.status(500).json({ message: 'server error' })
 
     }

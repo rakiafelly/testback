@@ -5,7 +5,31 @@ const Token = require('../models/token');
 const path = require('path');
 const ejs = require('ejs');
 const fs = require('fs');
+const multer = require('multer');
+
 const passport = require('passport');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      const folder = path.resolve('./uploads');
+      cb(null, folder);
+  },
+  filename: function (req, file, cb) {
+      const extension = path.extname(file.originalname);
+      const newFileName = Date.now() + extension;
+      const link='http://localhost:3000/uploads/'+newFileName;
+  
+      cb(null, newFileName)
+  }
+})
+const fileFilter = (req, file, cb) => {
+  const allowedFileExtensions = ['.pdf']
+  const extension = path.extname(file.originalname);
+  cb(null, allowedFileExtensions.includes(extension));
+}
+exports.imgUpload =multer({
+  storage: storage,
+  fileFilter: fileFilter,
+});
 
 exports.registre = async (req, res) => {
   try {

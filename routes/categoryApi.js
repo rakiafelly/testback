@@ -1,7 +1,6 @@
 
 const express = require('express');
-const passport=require('passport');
-const { createCategory, updateCategory, deleteCategory,getAllCategories,getCategoryById,getAllLivres } = require('../controllers/categoryController');
+const {createCategory, updateCategory, deleteCategory,getAllCategories,getCategoryById,getLivres } = require('../controllers/categoryController');
 
 
 const router = express.Router();
@@ -21,6 +20,6 @@ router.put('/category/:id'
 //delete
 router.delete('/category/:id'
 ,deleteCategory);
+// router.get('/alllivres',getLivres);
 
-//  router.get('/allLivres',getAllLivres);
 module.exports = router;
